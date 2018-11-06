@@ -31,4 +31,46 @@ pip install pytrends
 *  `__init__(self,ticker)` : Initialize and access the stock data.
 
     Parameter:
-    *  string for company ticker, i.e. 'AAPL' (required)
+    *  string for company ticker, i.e. 'JMP' (required)
+    
+*  `plot(self,start_date = None, end_date = None)`: Display the stock price 
+
+    Parameter:
+    *  start_date: the start date to display stock price. If start_date = None, the default date is the earliest date in records.
+    *  end_date: the end date to display stock price. If end_date = None, the default date is the lastest date in records.
+    
+*  `__create_model(self,**kwargs)`: Initialize the prophet model.
+    
+    Parameter:
+    *  `**kwargs`: other arguments of prophet model.
+    
+    Return:
+    * model: a prophet model without training.
+
+*  `__resampling(self, dataframe)`:  Method to linearly interpolate prices on the weekends
+
+    Parameter:
+    *  dataframe: the data need to be interpolated.
+    
+    Return:
+    *  dataframe: the data with interpolated prices on the weekends
+    
+*  `__remove_weekends(self, dataframe)`: Remove weekends from a dataframe
+
+    Parameter:
+    *  dataframe: the data needs to remove weekends.
+    
+    Return:
+    *  dataframe: the data with weekends being removed.
+    
+*  `create_prophet_model(self, years = 5, resample = False)`: 
+
+    Parameter:
+    *  years: int for using last n years as training data.
+    *  resample: boolean, optional, default False. When True, the data used to train prophet model with interpolated prices on the weekends.
+    
+    Return:
+    * model: the prophet model after training
+    * predictions: the fitted value of training data.
+    
+    
