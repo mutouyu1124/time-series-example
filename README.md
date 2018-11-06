@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+# Stock Prediction
 
-You can use the [editor on GitHub](https://github.com/mutouyu1124/time-series-example/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+I perform a time series prediction using [Prophet](https://facebook.github.io/prophet/docs/quick_start.html) and [LSTM](https://en.wikipedia.org/wiki/Long_short-term_memory) model to predict the stock price of an individual company. For this example, I will predict the stock price of JPMorgan Chase & Co.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The Facebook Prophet package was released in 2017 for Python and R. Prophet is designed for analyzing time series with daily observations that display patterns on different time scales. It also has advanced capabilities for modeling the effects of holidays on a time-series and implementing custom changepoints, here we will stick to the basic functions to get a model up.
 
-### Markdown
+Recently, LSTM models are used to do time series prediction. This is based on the gated architecture of LSTM’s that has an ability to manipulate its memory state, they are ideal for time series problems. LSTM models are pretty good at extracting patterns in input feature space, where the input data spans over long sequence. Further, LSTMs can almost seamlessly model problems with multiple input variables. This adds a great benefit in time series forecasting, where classical linear methods can be difficult to adapt to multivariate or multiple input forecasting problems.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+The model Stock() is a class in [Prophet.py](https://github.com/mutouyu1124/time-series-example/blob/master/Prophet.py), which implements prediction by Prophet model. The model Stock_LSTM() is another class in [LSTM.py](https://github.com/mutouyu1124/time-series-example/blob/master/LSTM.py), which implements prediction by LSTM model. We have a demo of the model's prediction on stock price of JPMorgan Chase & Co in the stock_price_demo.ipynb. 
 
-```markdown
-Syntax highlighted code block
+## Data
 
-# Header 1
-## Header 2
-### Header 3
+Usually, about 80% of the time spent on a data science project is getting and cleaning data. Thanks to the [Quandl financial library](https://www.quandl.com/tools/python),which can be installed with pip from the command line, lets you access thousands of financial indicators with a single line of Python. Quandl automatically puts our data into a pandas dataframe, the data structure of choice for data science. For example, if you want to access the stock price of JPMorgan Chase & Co, just replace the 'JMP' with the stock ticker.
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mutouyu1124/time-series-example/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
