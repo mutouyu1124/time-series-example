@@ -63,7 +63,7 @@ pip install pytrends
     Return:
     *  dataframe: the data with weekends being removed.
     
-*  `create_prophet_model(self, years = 5, resample = False)`: 
+*  `create_prophet_model(self, years = 5, resample = False)`: Train prophet model and make predictions.
 
     Parameter:
     *  years: int for using last n years as training data.
@@ -72,5 +72,55 @@ pip install pytrends
     Return:
     * model: the prophet model after training
     * predictions: the fitted value of training data.
+    
+ *  `predict_feature(self, model, days = 365, resample = False)`: Using trained model to predict future stock price.
+
+    Parameter:
+    *  model: the prophet model after training。
+    *  days: int for number of day to prediction in future.
+    *  resample: boolean, optional, default False. When True, the data used to train prophet model with interpolated prices on the weekends.
+    
+    Return:
+    * futuer_: the predicted value for the stock price in the future.
+    
+*  `train_prophet_model(self,years,metrics = 'rmse')`: Train prophet model and do evaluation on test data. 
+
+    Parameter:
+    *  years: int for using last n years as training data.
+    *  metrics: string, defalut rmse.
+    
+    Return:
+    *  training error: the root mean square error of prediction on training data.
+    *  test error: the root mean square error of prediction on test data.
+    
+*  `changepoint_prior_scale_validation(self,changepoint_prior_scale = [0.01,0.1,0.3,0.5],metrics = 'rmse')`:  Tune changepoint_prior_scale by validation method
+
+    Parameter:
+    *  changepoint_prior_scale: a list of value of changepoint_prior_scale.
+    *  metrics: string, defalut rmse.
+    
+    Return:
+    * results: dataframe including the training and test error for each changepoint_prior_scale value.
+    
+*  `retrieve_google_trends(self,term,date_range)`:   Retrieval search frequency from google trends
+
+    Parameter:
+    *  term: the term of search in google.
+    *  date_range: target data range.
+    
+    Return:
+    * trends: dataframe including search frequency.
+
+*  `changepoint_analysis(self,model,trends)`:   Analysis chagepoint based on google trends.
+
+    Parameter:
+    *  model: prophet model after training
+    *  trends: dataframe including search frequency.
+
+    
+    
+
+    
+
     
     
